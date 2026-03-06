@@ -10,7 +10,7 @@ package Modelo;
  * @author ferito
  */
 public class Alumno {
-private int CodigoAlumno;
+    private int CodigoAlumno;
     private String NombreAlumno;
     private String DireAlumno;
     private String EstatusAlumno;

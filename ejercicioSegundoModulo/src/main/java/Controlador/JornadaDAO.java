@@ -1,42 +1,46 @@
-//Ferdynand Monroy marzo 2026
+//Ferdyand Monroy marzo 2026
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
-import Modelo.Alumno;
+
+import Modelo.Jornada;
 import Modelo.ConexionBD;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
  *
  * @author ferito
  */
-public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el DAO sirve para la BD
-  private static final String SQL_SELECT =
-            "SELECT CodigoAlumno, NombreAlumno, DireAlumno, EstatusAlumno FROM alumno";
+public class JornadaDAO { //conexión de la BD 
+ private static final String SQL_SELECT =
+            "SELECT jor_codigo, jor_nombre FROM Jornadas";
 
     private static final String SQL_INSERT =
-            "INSERT INTO alumno(NombreAlumno, DireAlumno, EstatusAlumno) VALUES(?,?,?)";
+            "INSERT INTO Jornadas(jor_nombre) VALUES(?)";
 
     private static final String SQL_UPDATE =
-            "UPDATE alumno SET NombreAlumno=?, DireAlumno=?, EstatusAlumno=? WHERE CodigoAlumno=?";
+            "UPDATE Jornadas SET jor_nombre=? WHERE jor_codigo=?";
 
     private static final String SQL_DELETE =
-            "DELETE FROM alumno WHERE CodigoAlumno=?";
+            "DELETE FROM Jornadas WHERE jor_codigo=?";
 
     private static final String SQL_QUERY =
-            "SELECT CodigoAlumno, NombreAlumno, DireAlumno, EstatusAlumno FROM alumno WHERE CodigoAlumno=?";
+            "SELECT jor_codigo, jor_nombre FROM Jornadas WHERE jor_codigo=?";
 
-    public List<Alumno> select() { //aqui trabaja la tabla en la BD
+    public List<Jornada> select() {
 
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        Alumno alumno = null;
-        List<Alumno> alumnos = new ArrayList<>();
+        Jornada jornada = null;
+        List<Jornada> jornadas = new ArrayList<>();
 
         try {
 
@@ -46,28 +50,24 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
 
             while (rs.next()) {
 
-                int codigo = rs.getInt("CodigoAlumno");
-                String nombre = rs.getString("NombreAlumno");
-                String direccion = rs.getString("DireAlumno");
-                String estatus = rs.getString("EstatusAlumno");
+                int codigo = rs.getInt("jor_codigo");
+                String nombre = rs.getString("jor_nombre");
 
-                alumno = new Alumno();
-                alumno.setCodigoAlumno(codigo);
-                alumno.setNombreAlumno(nombre);
-                alumno.setDireAlumno(direccion);
-                alumno.setEstatusAlumno(estatus);
+                jornada = new Jornada();
+                jornada.setCodigoJornada(codigo);
+                jornada.setNombreJornada(nombre);
 
-                alumnos.add(alumno);
+                jornadas.add(jornada);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
 
-        return alumnos;
+        return jornadas;
     }
 
-    public int insert(Alumno alumno) {
+    public int insert(Jornada jornada) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -77,10 +77,8 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
 
             conn = ConexionBD.conectar();
             stmt = conn.prepareStatement(SQL_INSERT);
-            //los datos que se pueden manejar manualmente
-            stmt.setString(1, alumno.getNombreAlumno());
-            stmt.setString(2, alumno.getDireAlumno());
-            stmt.setString(3, alumno.getEstatusAlumno());
+
+            stmt.setString(1, jornada.getNombreJornada());
 
             System.out.println("Ejecutando query: " + SQL_INSERT);
 
@@ -95,7 +93,7 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
         return rows;
     }
 
-    public int update(Alumno alumno) {
+    public int update(Jornada jornada) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -106,10 +104,8 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
             conn = ConexionBD.conectar();
             stmt = conn.prepareStatement(SQL_UPDATE);
 
-            stmt.setString(1, alumno.getNombreAlumno());
-            stmt.setString(2, alumno.getDireAlumno());
-            stmt.setString(3, alumno.getEstatusAlumno());
-            stmt.setInt(4, alumno.getCodigoAlumno());
+            stmt.setString(1, jornada.getNombreJornada());
+            stmt.setInt(2, jornada.getCodigoJornada());
 
             System.out.println("Ejecutando query: " + SQL_UPDATE);
 
@@ -124,7 +120,7 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
         return rows;
     }
 
-    public int delete(Alumno alumno) {
+    public int delete(Jornada jornada) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -135,7 +131,7 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
             conn = ConexionBD.conectar();
             stmt = conn.prepareStatement(SQL_DELETE);
 
-            stmt.setInt(1, alumno.getCodigoAlumno());
+            stmt.setInt(1, jornada.getCodigoJornada());
 
             System.out.println("Ejecutando query: " + SQL_DELETE);
 
@@ -150,7 +146,7 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
         return rows;
     }
 
-    public Alumno query(Alumno alumno) {
+    public Jornada query(Jornada jornada) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -161,29 +157,24 @@ public class AlumnoDAO { //aqui se encuentra el CRUD para la tabla en MySQL y el
             conn = ConexionBD.conectar();
             stmt = conn.prepareStatement(SQL_QUERY);
 
-            stmt.setInt(1, alumno.getCodigoAlumno());
+            stmt.setInt(1, jornada.getCodigoJornada());
 
             rs = stmt.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
 
-                int codigo = rs.getInt("CodigoAlumno");
-                String nombre = rs.getString("NombreAlumno");
-                String direccion = rs.getString("DireAlumno");
-                String estatus = rs.getString("EstatusAlumno");
+                int codigo = rs.getInt("jor_codigo");
+                String nombre = rs.getString("jor_nombre");
 
-                alumno = new Alumno();
-
-                alumno.setCodigoAlumno(codigo);
-                alumno.setNombreAlumno(nombre);
-                alumno.setDireAlumno(direccion);
-                alumno.setEstatusAlumno(estatus);
+                jornada = new Jornada();
+                jornada.setCodigoJornada(codigo);
+                jornada.setNombreJornada(nombre);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
 
-        return alumno;
-    }    
+        return jornada;
+    }
 }
