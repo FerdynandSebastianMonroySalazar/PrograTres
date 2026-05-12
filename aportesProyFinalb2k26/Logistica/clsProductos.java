@@ -1,57 +1,101 @@
-//Ferdynand Monroy abril 2026
+//Ferdynand Monroy mayo 2026
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador.Logistica;
 
+import java.math.BigDecimal; //import para prodPrecioVenta
+
 /**
  *
  * @author ferito
  */
 public class clsProductos {
-    private int Prodid;
-    private String Prodnombre;
-    private int Prodpuntoreorden;
+    private int prodId;                    
+    private String prodNombre;             
+    private int prodStockActual;           
+    private int prodPuntoReorden;          
+    private BigDecimal prodPrecioVenta;    
+    private int lineaId;                   
+    private int marcaId; 
     
     //constructor vacio
     public clsProductos(){
     }
 
     //constructor con parametros
-    public clsProductos(int Prodid, String Prodnombre, int Prodpuntoreorden) {
-        this.Prodid = Prodid;
-        this.Prodnombre = Prodnombre;
-        this.Prodpuntoreorden = Prodpuntoreorden;
+    public clsProductos(int prodId, String prodNombre, int prodStockActual, int prodPuntoReorden, BigDecimal prodPrecioVenta, int lineaId, int marcaId) {
+        this.prodId = prodId;
+        this.prodNombre = prodNombre;
+        this.prodStockActual = prodStockActual;
+        this.prodPuntoReorden = prodPuntoReorden;
+        this.prodPrecioVenta = prodPrecioVenta;
+        this.lineaId = lineaId;
+        this.marcaId = marcaId;
     }
+
     //getters y setters
-    public int getProdid() {
-        return Prodid;
+    public int getProdId() {
+        return prodId;
     }
 
-    public void setProdid(int Prodid) {
-        this.Prodid = Prodid;
+    public void setProdId(int prodId) {
+        this.prodId = prodId;
     }
 
-    public String getProdnombre() {
-        return Prodnombre;
+    public String getProdNombre() {
+        return prodNombre;
     }
 
-    public void setProdnombre(String Prodnombre) {
-        this.Prodnombre = Prodnombre;
+    public void setProdNombre(String prodNombre) {
+        this.prodNombre = prodNombre;
     }
 
-    public int getProdpuntoreorden() {
-        return Prodpuntoreorden;
+    public int getProdStockActual() {
+        return prodStockActual;
     }
 
-    public void setProdpuntoreorden(int Prodpuntoreorden) {
-        this.Prodpuntoreorden = Prodpuntoreorden;
+    public void setProdStockActual(int prodStockActual) {
+        this.prodStockActual = prodStockActual;
     }
 
+    public int getProdPuntoReorden() {
+        return prodPuntoReorden;
+    }
+
+    public void setProdPuntoReorden(int prodPuntoReorden) {
+        this.prodPuntoReorden = prodPuntoReorden;
+    }
+
+    public BigDecimal getProdPrecioVenta() {
+        return prodPrecioVenta;
+    }
+
+    public void setProdPrecioVenta(BigDecimal prodPrecioVenta) {
+        this.prodPrecioVenta = prodPrecioVenta;
+    }
+
+    public int getLineaId() {
+        return lineaId;
+    }
+
+    public void setLineaId(int lineaId) {
+        this.lineaId = lineaId;
+    }
+
+    public int getMarcaId() {
+        return marcaId;
+    }
+
+    public void setMarcaId(int marcaId) {
+        this.marcaId = marcaId;
+    }
+
+    //to string
     @Override
     public String toString() {
-        return "clsProductos{" + "Prodid=" + Prodid + ", Prodnombre=" + Prodnombre + ", Prodpuntoreorden=" + Prodpuntoreorden + '}';
+        return "clsProductos{" + "prodId=" + prodId + ", prodNombre=" + prodNombre + ", prodStockActual=" + prodStockActual + ", prodPuntoReorden=" + prodPuntoReorden + ", prodPrecioVenta=" + prodPrecioVenta + ", lineaId=" + lineaId + ", marcaId=" + marcaId + '}';
     }
-   
+
 }
