@@ -1,0 +1,18 @@
+80e3a41 Se agrego el archivo Logistica.chm para las ayudas y también en los botones de ayuda en los formularios se muestra el .chm
+93d210d modificacion de clases marca y productos, asi como mi reporte inidividual
+3e9578c cambio en clase Productos y se agrego clsLinea & clsMarca
+e021457 descomente el codigo del boton Reportes
+8607348 Agregue mi reporte individual de frmAplicaciones
+ef191a6 Se actualizo la ayuda y se agrego el archivo Logistica.chm en todos los formularios en el boton de ayuda
+fcec398 Coreccion de boton Ayudas para que muestre el .chm
+eb77c3f Se agrego el archivo .chm para ayudas logistica
+bdb5e02 Ajuste de clases
+c6ab20c Merge de main a mi rama
+1bd4ab2 Controlador de logistica agregado
+5a1ed60 Cambio para que se visualice el frmMantenimientoAplicaciones
+6702920 Mejora del frmAplicaciones
+66050ba frmAplicaciones actualizado con bitacora implementada
+3b2798b cambios en frmAplicaciones en rama Ferdynand Monroy marzo 2026
+eb5f632 Formulario de aplicaciones realizado, junto a conexión de bitacora
+35c45cb Merge branch 'main' of https://github.com/Ivan774gt/proyectop32k26b into Ferdynand_Monroy_99592414049
+208098b implementación de formulario aplicaciones no.1
